@@ -1,4 +1,4 @@
-name: intercode-graphql
+name: intercode
 dependencies:
   - python=3.9
   - pip
@@ -22,4 +22,3 @@ dependencies:
     - tenacity
     - sqlite3-to-mysql
     - google-generativeai
-    - gql[aiohttp]

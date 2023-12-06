@@ -14,9 +14,6 @@ EVAL_OBS = "eval_obs"
 CORRUPT_GOLD = "corrupt_gold"
 ACTION_EXEC = "action_executed"
 REWARD = "reward"
-LLM_RESPONSE = "llm_response"
-GOLD = "gold"
-QUERY_REWARD = "query_reward"
 
 # Set up logger
 handler = RichHandler(show_time=False)

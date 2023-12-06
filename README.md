@@ -1,9 +1,3 @@
-# NL to GraphQL
-This repository is based on [Intercode](https://github.com/princeton-nlp/intercode). We would like to acknowledge and thank the authors for their work and contribution.
-This repository adds a new track/environment to intercode - GraphQL.
-We have implemented our own classes and created our own datasets to add a new GraphQL environment to intercode.
-The rest of the README is a slight modification of intercode's README.
-
 # 🔄 InterCode
 Build interactive code environments for interactive code agents.
 
@@ -40,7 +34,6 @@ You can install InterCode as a PyPI package or by building from source.
 > * `docker`: Learn more [here](https://docs.docker.com/get-docker/) to install. Before running the below code, make sure the Docker daemon/application is running locally.
 
 ### 🐍 PyPI Package
-NOTE: Using this you will not be able to access the GraphQL environment since this repo is not merged with intercode.
 1. Install the ([pypi package](https://pypi.org/project/intercode-bench/)):
 ```bash
 pip install intercode-bench
@@ -76,19 +69,17 @@ Similar starter code for the InterCode SQL environment is available on the PyPI 
 ### 💽 Build from Source
 1. Clone this repository, create a virtual environment, and install necessary dependencies
 ```bash
-git clone https://github.com/NikhilP97/nl-to-graphql
-cd nl-to-graphql
+git clone https://github.com/princeton-nlp/intercode.git
+cd intercode
 conda env create -f environment.yml
-conda activate intercode-graphql
+conda activate intercode
 ```
-2. Run `setup.sh` to create the docker images for the InterCode GraphQL, Bash, CTF, Python, and SQL environments
-3. Run `python run_demo_human_and_llm.py graphql --policy human | python run_demo.py graphql --policy llm`
+2. Run `setup.sh` to create the docker images for the InterCode Bash, CTF, Python, and SQL environments
+3. Run `python run_demo.py sql`
 
-If InterCode was installed successfully, the InterCode GraphQL environment should be started successfully and a CLI interpreter should appear, allowing you to enter `GraphQL` queries to interact with the task environment.
-If you pass the flag as LLM, you can write the question in natural language and the LLM will generate the GraphQL queries for you.
-NOTE: The GraphQL schema is hardcoded. If you want to use your own GraphQL schema, make changes in the python file by pointing to your .graphql file.
+If InterCode was installed successfully, the InterCode SQL environment should be started successfully and a CLI interpreter should appear, allowing you to enter `SQL` commands to interact with the task environment.
 You can `ctrl + c` at any to time to exit the environment.
-Check `run_demo_human_and_llm.py` for further instructions.
+Check [`run_demo.py`](https://github.com/princeton-nlp/intercode/blob/master/run_demo.py#L21) for the latest full list of available environments.
 
 ### 🧪 Run Experiments
 If you'd like to run the scripts in the `experiments` folder, make sure you have at least one of the following keys declared

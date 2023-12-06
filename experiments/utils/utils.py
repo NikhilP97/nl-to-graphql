@@ -83,16 +83,11 @@ def python_parser(action: str):
         action = re.sub(r' {5,}', replace_spaces, action)
     return action, True
 
-def graphql_parser(action: str):
-    # Return the value as it is, there is no needed for any parsing logic since the LLM responds with the GraphQL query
-    return action, True
-
 ACTION_PARSER_MAP = {
     "sql": sql_parser,
     "bash": bash_parser,
     "python": python_parser,
-    "ctf": ctf_parser,
-    "graphql": graphql_parser
+    "ctf": ctf_parser
 }
 ACTION_PARSER_MAP_REACT = {"sql": sql_parser_react, "bash": bash_parser_react}
 
