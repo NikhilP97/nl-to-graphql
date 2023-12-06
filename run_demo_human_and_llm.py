@@ -17,19 +17,19 @@ add support for it through the command line arguments.
 Typical usage example:
 
     Generic:
-    python run_demo.py {environment_name} --policy {human|llm}
+    python run_demo_human_and_llm.py {environment_name} --policy {human|llm}
 
     Human policy with GraphQL
-    python run_demo.py graphql --policy human
+    python run_demo_human_and_llm.py graphql --policy human
 
     LLM policy with GraphQL
-    python run_demo.py graphql --policy llm
+    python run_demo_human_and_llm.py graphql --policy llm
 
     Human policy with SQL
-    python run_demo.py sql --policy human
+    python run_demo_human_and_llm.py sql --policy human
 
     LLM policy with BASH
-    python run_demo.py bash --policy llm
+    python run_demo_human_and_llm.py bash --policy llm
 """
 import argparse
 
