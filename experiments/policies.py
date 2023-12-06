@@ -24,7 +24,7 @@ class CompletionGPTPolicy(BasePolicy):
         super().__init__()
         self.language = language.upper()
         self.setting = setting
-        self.template = PROMPT_MAP[template](self.language, self.setting)
+        self.template = PROMPT_MAP[template](self.language, self.setting, self.schema)
         self.action_parser = ACTION_PARSER_MAP[language]
         self.response_limit = response_limit
         self.model = model
@@ -63,12 +63,13 @@ class CompletionGPTPolicy(BasePolicy):
         return action, is_code
 
 class ChatGPTPolicy(BasePolicy):
-    def __init__(self, language: str, setting: str, template: str, dialogue_limit: int = None, model: str = "gpt-3.5-turbo", response_limit: int = 1000):
+    def __init__(self, language: str, setting: str, template: str, dialogue_limit: int = None, model: str = "gpt-3.5-turbo", response_limit: int = 1000, schema = ""):
         super().__init__()
         self.language = language.upper()
         self.setting = setting
+        self.schema = schema
         self.dialogue_limit = dialogue_limit
-        self.template = PROMPT_MAP[template](self.language, self.setting)
+        self.template = PROMPT_MAP[template](self.language, self.setting, self.schema)
         self.action_parser = ACTION_PARSER_MAP[language]
         self.model = model
         self.response_limit = response_limit
@@ -104,11 +105,12 @@ class ChatGPTPolicy(BasePolicy):
         return action, is_code
     
 class PalmChatPolicy(BasePolicy):
-    def __init__(self, language: str, setting: str, template: str, dialogue_limit: int = None, model: str = "models/chat-bison-001", response_limit: int = 1000):
+    def __init__(self, language: str, setting: str, template: str, dialogue_limit: int = None, model: str = "models/chat-bison-001", response_limit: int = 1000, schema = ""):
         super().__init__()
         self.language = language.upper()
         self.setting = setting
-        self.template = PROMPT_MAP[template](self.language, self.setting)
+        self.schema = schema
+        self.template = PROMPT_MAP[template](self.language, self.setting, self.schema)
         self.action_parser = ACTION_PARSER_MAP[language]
         self.response_limit = response_limit
         self.model = model
@@ -142,11 +144,12 @@ class PalmChatPolicy(BasePolicy):
     
 
 class PalmCompletionPolicy(BasePolicy):
-    def __init__(self, language: str, setting: str, template: str, dialogue_limit: int = None, model: str = "models/text-bison-001", response_limit: int = 1000):
+    def __init__(self, language: str, setting: str, template: str, dialogue_limit: int = None, model: str = "models/text-bison-001", response_limit: int = 1000, schema = ""):
         super().__init__()
         self.language = language.upper()
         self.setting = setting
-        self.template = PROMPT_MAP[template](self.language, self.setting)
+        self.schema = schema
+        self.template = PROMPT_MAP[template](self.language, self.setting, self.schema)
         self.action_parser = ACTION_PARSER_MAP[language]
         self.response_limit = response_limit
         self.model = model
@@ -184,12 +187,13 @@ class PalmCompletionPolicy(BasePolicy):
         return action, is_code
 
 class HFChatPolicy(BasePolicy):
-    def __init__(self, language: str, setting: str, template: str, dialogue_limit: int = None, model: str = "gpt-3.5-turbo", response_limit: int = 1000):
+    def __init__(self, language: str, setting: str, template: str, dialogue_limit: int = None, model: str = "gpt-3.5-turbo", response_limit: int = 1000, schema = ""):
         super().__init__()
         self.language = language.upper()
         self.setting = setting
+        self.schema = schema
         self.dialogue_limit = dialogue_limit
-        self.template = PROMPT_MAP[template](self.language, self.setting)
+        self.template = PROMPT_MAP[template](self.language, self.setting, self.schema)
         self.action_parser = ACTION_PARSER_MAP[language]
         self.model = model
         self.response_limit = response_limit
@@ -204,7 +208,7 @@ class HFChatPolicy(BasePolicy):
         # Append response to dialogue
         if len(self.dialogue) == 0:
             # First Turn
-            self.dialogue = [{"role": "<|system|>", "content": "You are an expert in Bash."}] 
+            self.dialogue = [{"role": "<|system|>", f"content": "You are an expert in {self.language}."}] 
             self.dialogue.append({"role": "<|user|>", "content": self.template.get_init_msg() + self.template.get_query_msg(query)})
         else:
             # Limit observation size due to context window thresholds for API call

@@ -58,14 +58,28 @@
 #     --verbose
 
 # CTF call
+# python -m experiments.eval_n_turn \
+#     --data_path ./data/ctf/ic_ctf.json \
+#     --dialogue_limit 5 \
+#     --env ctf \
+#     --image_name intercode-ctf \
+#     --log_dir logs/experiments \
+#     --max_turns 10 \
+#     --policy chat \
+#     --template ctf \
+#     --model gpt-4 \
+#     --verbose
+
+# GraphQL call
 python -m experiments.eval_n_turn \
-    --data_path ./data/ctf/ic_ctf.json \
-    --dialogue_limit 5 \
-    --env ctf \
-    --image_name intercode-ctf \
+    --data_path ./data/graphql/nl2graphql_fs_1.json \
+    --schema_path ./data/graphql/nl2graphql_fs_1.graphql \
+    --dialogue_limit 3 \
+    --env graphql \
+    --image_name blog-graphql \
     --log_dir logs/experiments \
-    --max_turns 10 \
+    --max_turns 7 \
     --policy chat \
-    --template ctf \
     --model gpt-4 \
+    --template query \
     --verbose
