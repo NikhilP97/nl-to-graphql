@@ -1,0 +1,135 @@
+{
+  "0": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 0,
+    "query": "Fetch allPosts with the title and body fields",
+    "gold": "{   allPosts {     nodes {       title       body     }   } }",
+    "turn_history": {
+      "actions": [
+        "{   allPosts {     nodes {       title       body     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'title': 'Second post example', 'body': 'Consectetur adipiscing elit'}, {'title': 'Third post example', 'body': 'Aenean blandit felis sodales'}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 7
+    },
+    "hardness": "easy"
+  },
+  "1": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 1,
+    "query": "Fetch all posts with title and body",
+    "gold": "{   allPosts {     nodes {       title       body     }   } }",
+    "turn_history": {
+      "actions": [
+        "{   allPosts {     nodes {       title       body     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'title': 'Second post example', 'body': 'Consectetur adipiscing elit'}, {'title': 'Third post example', 'body': 'Aenean blandit felis sodales'}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 7
+    },
+    "hardness": "medium"
+  },
+  "2": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 2,
+    "query": "Update the username to Zack for the user with id equal to 3",
+    "gold": "mutation {  updateUserById(input : { id: 3, userPatch: { username: \"Zack\"}}) {    user {      id,      username    }  }}",
+    "turn_history": {
+      "actions": [
+        "mutation {   updateUserById(input: {id: \"3\", userPatch: {username: \"Zack\"}}) {     user {       id       username     }   } }",
+        "mutation {   updateUserById(input: {id: 3, userPatch: {username: \"Zack\"}}) {     user {       id       username     }   } }"
+      ],
+      "observations": [
+        "Error executing GraphQL query: Int cannot represent non-integer value: \"3\"\n\nGraphQL request:1:41\n1 | mutation {   updateUserById(input: {id: \"3\", userPatch: {username: \"Zack\"}}) {  \n  |                                         ^\n  |    user {       id       username     }   } }",
+        "{'updateUserById': {'user': {'id': 3, 'username': 'Zack'}}}"
+      ],
+      "rewards": [
+        0.0,
+        1.0
+      ],
+      "valid_action": [
+        false,
+        true
+      ],
+      "query_rewards": [
+        0.9655172413793104,
+        0.9882352941176471
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 1,
+      "max_query_reward": 0.9882352941176471,
+      "turns_taken": 2,
+      "turns_max": 7
+    },
+    "hardness": "hard"
+  },
+  "3": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 3,
+    "query": "Fetch allPosts only with the body field",
+    "gold": "{   allPosts { nodes {  body   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts {     nodes {       body     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'body': 'Consectetur adipiscing elit'}, {'body': 'Aenean blandit felis sodales'}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 7
+    },
+    "hardness": "easy"
+  }
+}

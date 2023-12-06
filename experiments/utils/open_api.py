@@ -10,7 +10,8 @@ access_token = os.environ.get("HF_TOKEN")
 if (access_token is None or access_token == "") and os.path.isfile(os.path.join(os.getcwd(), "keys.cfg")):
     cfg = config.Config('keys.cfg')
     access_token = cfg.get("HF_TOKEN")
-assert(access_token)
+# Commented out since it throws an error if the user does not have the HF_TOKEN in the repo
+# assert(access_token)
 HF_TOKEN = access_token
 hf_headers = {"Authorization": f"Bearer {HF_TOKEN}"}
 
@@ -19,7 +20,8 @@ endpoint = os.environ.get("HF_API_URL")
 if (endpoint is None or endpoint == "") and os.path.isfile(os.path.join(os.getcwd(), "keys.cfg")):
     cfg = config.Config('keys.cfg')
     endpoint = cfg.get("HF_API_URL")
-assert(endpoint != None)
+# Commented out since it throws an error if the user does not have the HF_API_URL in the repo
+# assert(endpoint != None)
 HF_API_URL = endpoint
 
 

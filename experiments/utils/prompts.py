@@ -718,6 +718,60 @@ Along with the output, you get the reward which is a decimal value between 0 and
     Analyze the output and think about what cases might be failing {self.language} function to get a reward of 1.
     Only output valid {self.language} code. DO NOT output anything else.
 """
+    
+"""Prompt template for GraphQL track.
+
+It can be generalized to any environment that is query based and has a schema associated with it.
+"""
+class TemplateQueryGenerator(PromptTemplate):
+    def __init__(self, language: str, setting: str, schema: str):
+        super().__init__(language, setting)
+        self.schema = schema
+        self.message_history = ""
+           
+    def get_init_msg(self):
+        return f"""## TASK DESCRIPTION
+You are a {self.language} query generator helping me generate a query using {self.language}.
+This is the GraphQL Schema {self.schema}. Only use this as a reference while generating the {self.language} queries.
+NOTE: Use only PostGraphile syntax for generating the queries
+I will ask you a question, and your task is to interact with a {self.setting} using {self.language} queries to come up with the correct data. Your goal is to write a {self.language} query as per the context I describe that returns the correct data from the {self.setting}. The {self.language} Schema for the {self.setting} is the following. Use only this Schema as the reference while generating the {self.language} queries. 
+
+## RULES
+1. Do NOT ask questions 
+2. Do NOT provide any explanations
+3. Try to maximize your reward to 1 by interacting with the {self.setting} using {self.language} queries to get the correct data.
+4. Only output a single valid {self.language} query. DO NOT output anything else.
+
+## OUTPUT DESCRIPTION
+For any valid {self.language} query, I will return the following:
+Output: <string>
+
+The output will contain the data from executing your {self.language} query fetched from the {self.setting}. You can mainly do this to debug your code and build your function or test your function against some test cases of your own.
+
+If you write your {self.language} query, I will test your {self.language} query against the {self.setting} and return the following:
+Output: <string>
+Reward: [0, 1]
+
+Along with the output, you get the reward which is a decimal value between 0 and 1, which tells you how close your {self.language} queries result is to the correct data. The closer the reward is to 1, the closer your {self.language} query is to the correct answer.
+"""
+    def get_query_msg(self, query):
+        self.query = query
+        return f"""Question: \"{query}\".
+Remember this is the GraphQL Schema {self.schema}. Only use this as a reference while generating the {self.language} queries.
+NOTE: Use only PostGraphile syntax for generating the queries
+Do NOT generate any output or reward or explain your answer. Print ONLY the {self.language} query directly"""
+
+    def get_obs_msg(self, observation, reward):
+            if isinstance(observation, str) and observation == "" or isinstance(observation, list) and len(observation) == 0:
+                observation = f"No output, write a {self.language} query to get an output."
+            return f"""{self.setting} Output: {observation}
+    Reward: {reward}
+    Here is the query again: \"{self.query}\"
+    Analyze the output and think about what cases might be failing {self.language} query to get a reward of 1.
+    Only output valid {self.language} query. DO NOT output anything else.
+    Remember this is the GraphQL Schema {self.schema}. Only use this as a reference while generating the {self.language} queries.
+    NOTE: Use only PostGraphile syntax for generating the queries.
+"""
 
 
 PROMPT_MAP = {
@@ -729,5 +783,6 @@ PROMPT_MAP = {
     "react": TemplateReAct,
     "ctf": TemplateCTF,
     "plan_solve": TemplatePlanSolve,
-    "function": TemplateCodeFunction
+    "function": TemplateCodeFunction,
+    "query": TemplateQueryGenerator # For GraphQL environment
 }

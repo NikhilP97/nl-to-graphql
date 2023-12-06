@@ -1,19 +1,20 @@
 import argparse, json, os, re
 from intercode.envs import (
-    BashEnv, CTFEnv, PythonEnv, SqlEnv, ACTION_EXEC, AGENT_OBS
+    BashEnv, CTFEnv, PythonEnv, SqlEnv, GraphQLEnv, ACTION_EXEC, AGENT_OBS,
 )
 from tqdm import tqdm
 from typing import Dict, List
 from experiments.policies import (
-    CompletionGPTPolicy, ChatGPTPolicy, PalmChatPolicy, PalmCompletionPolicy
+    CompletionGPTPolicy, ChatGPTPolicy, PalmChatPolicy, PalmCompletionPolicy, HFChatPolicy
 )
 from experiments.utils import HANDICAP_MAP, PROMPT_MAP
 from rich import print
 
 parser = argparse.ArgumentParser(description='N-turn evaluation for Intercode environment')
 parser.add_argument('--data_path', type=str, help='path to dataset to evaluate on')
+parser.add_argument('--schema_path', type=str, help='path in which GraphQL schema is defined for the system')
 parser.add_argument('--dialogue_limit', type=int, help='maximum number of turns in the policy\'s dialogue to keep')
-parser.add_argument('--env', choices=['sql', 'bash', 'python', 'ctf'], help='Intercode environment to run eval on')
+parser.add_argument('--env', choices=['sql', 'bash', 'python', 'ctf', 'graphql'], help='Intercode environment to run eval on')
 parser.add_argument('--handicap', action='store_true', help='enable handicap')
 parser.add_argument('--image_name', type=str, help='name of docker image to build environment with')
 parser.add_argument('--log_dir', type=str, help='folder to save experiment run log file to')
@@ -28,7 +29,8 @@ SETTING_MAP = {
     "sql": "MySQL Database",
     "bash": "Bourne Shell",
     "python": "Python 3 Interpreter",
-    "ctf": "Capture the Flag"
+    "ctf": "Capture the Flag",
+    "graphql": "GraphQL Server"
 }
 
 def preprocess_ctf(record: Dict) -> List:
@@ -59,6 +61,9 @@ class ExperimentWrapper():
         elif args.env == 'ctf':
             self.env = CTFEnv(image_name=args.image_name,
                 data_path=args.data_path, preprocess=preprocess_ctf)
+        elif args.env == 'graphql':
+            self.env = GraphQLEnv(image_name=args.image_name,
+                data_path=args.data_path)
         else:
             raise ValueError(f'Environment {args.env} not recognized')
         
@@ -69,13 +74,28 @@ class ExperimentWrapper():
         self.log_path = os.path.join(args.log_dir, log_file_name)
         self.log_data = {}
 
+        # Read GraphQL schema if exists
+        schema_value = ""
+        if args.schema_path:
+            with open(args.schema_path) as f:
+                schema_value = f.read()
+
         # Initialize Policy
         if args.template not in PROMPT_MAP:
             raise ValueError(f"Prompt {args.template} not recognized; Options: {PROMPT_MAP.keys()}")
         self.policy = None
         if args.policy == 'chat':
-            self.policy = ChatGPTPolicy(language=args.env, setting=SETTING_MAP[args.env],
-                template=args.template, dialogue_limit=args.dialogue_limit, model=args.model)
+            if args.model == 'gpt-3.5-turbo' or args.model == 'gpt-4':
+                self.policy = ChatGPTPolicy(language=args.env, setting=SETTING_MAP[args.env],
+                    template=args.template, dialogue_limit=args.dialogue_limit, model=args.model, schema=schema_value)
+            elif args.model == 'HF':
+                self.policy = HFChatPolicy(language=args.env, setting=SETTING_MAP[args.env],
+                    template=args.template, dialogue_limit=args.dialogue_limit, schema=schema_value)
+            elif args.model == 'PALM':
+                self.policy = PalmChatPolicy(language=args.env, setting=SETTING_MAP[args.env],
+                    template=args.template, dialogue_limit=args.dialogue_limit, schema=schema_value)
+            else:
+                raise ValueError(f'Model: "{args.policy}" not recognized. Choose a valid Model')
         elif args.policy == 'complete':
             self.policy = CompletionGPTPolicy(language=args.env, setting=SETTING_MAP[args.env],
                 template=args.template, dialogue_limit=args.dialogue_limit, model=args.model)
@@ -89,12 +109,14 @@ class ExperimentWrapper():
     
     def run_expr(self):
         try:
-            for idx in tqdm(range(0,len(self.env.data_loader)), disable=self.args.verbose):
+            # Add offset if experiments need to start from a value apart from the starting item in the dataset
+            offset = 0
+            for idx in tqdm(range(offset,len(self.env.data_loader)), disable=self.args.verbose):
                 # Reset variables per task
                 self.env.reset(idx)
                 self.policy.reset()
                 observation, reward, valid_action = None, None, None
-                turn_history = {"actions": [], "observations": [], "rewards": [], "valid_action": []}
+                turn_history = {"actions": [], "observations": [], "rewards": [], "valid_action": [], "query_rewards": []}
                 record = self.env.data_loader.get(idx)
 
                 # Add Handicap
@@ -116,6 +138,7 @@ class ExperimentWrapper():
                         # Logging
                         turn_history["actions"].append("blocked")
                         turn_history["rewards"].append(0)
+                        turn_history["query_rewards"].append(0)
                         break
 
                     if not is_code:
@@ -161,7 +184,7 @@ class ExperimentWrapper():
                                     observation = "Submitted flag is incorrect. Keep trying!"
                     
                     if self.args.verbose:
-                        print(f"- Turn {turn}")
+                        print(f"\n- Turn {turn}")
                         print(f"-- Action: {action}")
                         if isinstance(observation, str) and observation.startswith(f'No {self.policy.language} code'):
                             print(f"-- Observation: (meta) No code output, policy's template's retry message was invoked")
@@ -172,6 +195,7 @@ class ExperimentWrapper():
                     turn_history["actions"].append(action)
                     turn_history["observations"].append(str(observation)) # To avoid serialization issues
                     turn_history["rewards"].append(reward)
+                    turn_history["query_rewards"].append(info["query_reward"])
                     turn_history["valid_action"].append(valid_action)
 
                     # End episode upon perfect reward
@@ -179,15 +203,19 @@ class ExperimentWrapper():
                         break
                 
                 max_reward = max(turn_history["rewards"])
+                max_query_reward = max(turn_history["query_rewards"])
                 log_episode = {
                     "environment": self.env.name,
                     "dataset": self.args.data_path,
                     "task_id": idx,
                     "query": self.env.query,
+                    "gold": self.env.gold,
                     "turn_history": turn_history,
                     "summary": {
                         "max_reward": max_reward,
                         "max_reward_idx": turn_history["rewards"].index(max_reward),
+                        "max_query_reward": max_query_reward,
+                        "max_reward_idx": turn_history["query_rewards"].index(max_query_reward),
                         "turns_taken": turn + 1,
                         "turns_max": self.args.max_turns,
                     }
@@ -197,7 +225,7 @@ class ExperimentWrapper():
                 self.log_data[idx] = log_episode
 
                 if self.args.verbose:
-                    print(f"Query {idx} Finished\n-Reward: {max_reward}\n-Turns: {turn+1}")
+                    print(f"\nQuery {idx} Finished\n-Reward: {max_reward}\n-Query Reward: {max_query_reward}\n-Turns: {turn+1}")
 
         except KeyboardInterrupt:
             print("Keyboard interrupt detected")

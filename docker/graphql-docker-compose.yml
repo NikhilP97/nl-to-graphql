@@ -1,0 +1,44 @@
+version: "3.3"
+services:
+    db:
+        container_name: blog-postgres-db
+        restart: always
+        image: blog-postgres-db
+        build:
+            context: ../
+            dockerfile: ./docker/postgres.Dockerfile
+        volumes:
+            - db:/var/lib/postgresql/data
+        networks:
+            - network
+        ports:
+            - 5432:5432
+
+    graphql:
+        container_name: blog-graphql
+        restart: always
+        image: blog-graphql
+        build:
+            context: ../
+            dockerfile: ./docker/graphql.Dockerfile
+        depends_on:
+            - db
+        networks:
+            - network
+        ports:
+            - 5433:5433
+        command:
+            [
+                "--connection",
+                "${DATABASE_URL}",
+                "--port",
+                "5433",
+                "--schema",
+                "public",
+            ]
+
+networks:
+    network:
+
+volumes:
+    db:

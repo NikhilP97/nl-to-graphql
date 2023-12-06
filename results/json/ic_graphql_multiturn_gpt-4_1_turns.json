@@ -1,0 +1,962 @@
+{
+  "0": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 0,
+    "query": "Fetch allPosts with the title and body fields",
+    "gold": "{   allPosts {     nodes {       title       body     }   } }",
+    "turn_history": {
+      "actions": [
+        "{   allPosts {     nodes {       title       body     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'title': 'First post example', 'body': 'Lorem ipsum dolor sit amet'}, {'title': 'Second post example', 'body': 'Consectetur adipiscing elit'}, {'title': 'Third post example', 'body': 'Aenean blandit felis sodales'}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "easy"
+  },
+  "1": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 1,
+    "query": "Fetch all posts with title and body",
+    "gold": "{   allPosts {     nodes {       title       body     }   } }",
+    "turn_history": {
+      "actions": [
+        "{   allPosts {     nodes {       title       body     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'title': 'First post example', 'body': 'Lorem ipsum dolor sit amet'}, {'title': 'Second post example', 'body': 'Consectetur adipiscing elit'}, {'title': 'Third post example', 'body': 'Aenean blandit felis sodales'}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "medium"
+  },
+  "2": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 2,
+    "query": "Fetch allPosts only with the body field",
+    "gold": "{   allPosts { nodes {  body   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts {     nodes {       body     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'body': 'Lorem ipsum dolor sit amet'}, {'body': 'Consectetur adipiscing elit'}, {'body': 'Aenean blandit felis sodales'}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "easy"
+  },
+  "3": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 3,
+    "query": "Fetch all posts with body",
+    "gold": "{   allPosts { nodes {  body   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts {     nodes {       body     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'body': 'Lorem ipsum dolor sit amet'}, {'body': 'Consectetur adipiscing elit'}, {'body': 'Aenean blandit felis sodales'}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "medium"
+  },
+  "4": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 4,
+    "query": "Fetch allPosts only with the title field",
+    "gold": "{   allPosts { nodes {  title   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts {     nodes {       title     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'title': 'First post example'}, {'title': 'Second post example'}, {'title': 'Third post example'}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "easy"
+  },
+  "5": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 5,
+    "query": "Fetch all posts with title",
+    "gold": "{   allPosts { nodes {  title   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts {     nodes {       title     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'title': 'First post example'}, {'title': 'Second post example'}, {'title': 'Third post example'}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "medium"
+  },
+  "6": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 6,
+    "query": "Fetch allPosts only with the createdDate field",
+    "gold": "{   allPosts { nodes {  createdDate   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts {     nodes {       createdDate     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'createdDate': '2023-11-21T01:25:09.549781'}, {'createdDate': '2023-11-21T01:25:09.549781'}, {'createdDate': '2023-11-21T01:25:09.549781'}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "easy"
+  },
+  "7": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 7,
+    "query": "Fetch all posts with the created date",
+    "gold": "{   allPosts { nodes {  createdDate   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts {     nodes {       id       title       content       createdDate     }   } }"
+      ],
+      "observations": [
+        "Error executing GraphQL query: Cannot query field 'content' on type 'Post'.\n\nGraphQL request:1:55\n1 | {   allPosts {     nodes {       id       title       content       createdDate     }   } }\n  |                                                       ^"
+      ],
+      "rewards": [
+        0.0
+      ],
+      "valid_action": [
+        false
+      ],
+      "query_rewards": [
+        0.6818181818181818
+      ]
+    },
+    "summary": {
+      "max_reward": 0.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 0.6818181818181818,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "medium"
+  },
+  "8": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 8,
+    "query": "Fetch allPosts only with authorId field",
+    "gold": "{   allPosts { nodes {  authorId   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts {     nodes {       authorId     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'authorId': 1}, {'authorId': 2}, {'authorId': 3}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "easy"
+  },
+  "9": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 9,
+    "query": "Fetch all posts with the author id",
+    "gold": "{   allPosts { nodes {  authorId   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts {     nodes {       id       title       content       authorId     }   } }"
+      ],
+      "observations": [
+        "Error executing GraphQL query: Cannot query field 'content' on type 'Post'.\n\nGraphQL request:1:55\n1 | {   allPosts {     nodes {       id       title       content       authorId     }   } }\n  |                                                       ^"
+      ],
+      "rewards": [
+        0.0
+      ],
+      "valid_action": [
+        false
+      ],
+      "query_rewards": [
+        0.6585365853658537
+      ]
+    },
+    "summary": {
+      "max_reward": 0.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 0.6585365853658537,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "medium"
+  },
+  "10": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 10,
+    "query": "Fetch allPosts with the title, body and authorId fields",
+    "gold": "{   allPosts { nodes {  title body authorId   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts {     nodes {       title       body       authorId     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'title': 'First post example', 'body': 'Lorem ipsum dolor sit amet', 'authorId': 1}, {'title': 'Second post example', 'body': 'Consectetur adipiscing elit', 'authorId': 2}, {'title': 'Third post example', 'body': 'Aenean blandit felis sodales', 'authorId': 3}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "easy"
+  },
+  "11": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 11,
+    "query": "Fetch all posts with title, body and author id",
+    "gold": "{   allPosts { nodes {  title body authorId   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts {     nodes {       title       body       authorId     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'title': 'First post example', 'body': 'Lorem ipsum dolor sit amet', 'authorId': 1}, {'title': 'Second post example', 'body': 'Consectetur adipiscing elit', 'authorId': 2}, {'title': 'Third post example', 'body': 'Aenean blandit felis sodales', 'authorId': 3}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "medium"
+  },
+  "12": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 12,
+    "query": "Fetch allPosts where the author id is 1. Include the title and body fields",
+    "gold": "{   allPosts(condition : { authorId: 1}) { nodes {  title body   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts(filter: {authorId: {equalTo: 1}}) {     nodes {       title       body     }   } }"
+      ],
+      "observations": [
+        "Error executing GraphQL query: Unknown argument 'filter' on field 'Query.allPosts'. Did you mean 'after'?\n\nGraphQL request:1:14\n1 | {   allPosts(filter: {authorId: {equalTo: 1}}) {     nodes {       title       body     }   } }\n  |              ^"
+      ],
+      "rewards": [
+        0.0
+      ],
+      "valid_action": [
+        false
+      ],
+      "query_rewards": [
+        0.7076923076923077
+      ]
+    },
+    "summary": {
+      "max_reward": 0.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 0.7076923076923077,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "easy"
+  },
+  "13": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 13,
+    "query": "Fetch all posts where the author id is 1 and get the title and body",
+    "gold": "{   allPosts(condition : { authorId: 1}) { nodes {  title body   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts(filter: {authorId: {equalTo: 1}}) {     nodes {       title       body     }   } }"
+      ],
+      "observations": [
+        "Error executing GraphQL query: Unknown argument 'filter' on field 'Query.allPosts'. Did you mean 'after'?\n\nGraphQL request:1:14\n1 | {   allPosts(filter: {authorId: {equalTo: 1}}) {     nodes {       title       body     }   } }\n  |              ^"
+      ],
+      "rewards": [
+        0.0
+      ],
+      "valid_action": [
+        false
+      ],
+      "query_rewards": [
+        0.7076923076923077
+      ]
+    },
+    "summary": {
+      "max_reward": 0.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 0.7076923076923077,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "medium"
+  },
+  "14": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 14,
+    "query": "Fetch allPosts where the title is 'First post example'. Include the body field",
+    "gold": "{   allPosts(condition : { title: \"First post example\"}) { nodes {  body   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts(filter: {title: {equalTo: \"First post example\"}}) {     nodes {       body     }   } }"
+      ],
+      "observations": [
+        "Error executing GraphQL query: Unknown argument 'filter' on field 'Query.allPosts'. Did you mean 'after'?\n\nGraphQL request:1:14\n1 | {   allPosts(filter: {title: {equalTo: \"First post example\"}}) {     nodes {       body     }   } }\n  |              ^"
+      ],
+      "rewards": [
+        0.0
+      ],
+      "valid_action": [
+        false
+      ],
+      "query_rewards": [
+        0.7432432432432432
+      ]
+    },
+    "summary": {
+      "max_reward": 0.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 0.7432432432432432,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "easy"
+  },
+  "15": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 15,
+    "query": "Fetch all posts where the title is First post example and get the body field",
+    "gold": "{   allPosts(condition : { title: \"First post example\"}) { nodes {  body   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts(filter: {title: {equalTo: \"First post example\"}}) {     nodes {       body     }   } }"
+      ],
+      "observations": [
+        "Error executing GraphQL query: Unknown argument 'filter' on field 'Query.allPosts'. Did you mean 'after'?\n\nGraphQL request:1:14\n1 | {   allPosts(filter: {title: {equalTo: \"First post example\"}}) {     nodes {       body     }   } }\n  |              ^"
+      ],
+      "rewards": [
+        0.0
+      ],
+      "valid_action": [
+        false
+      ],
+      "query_rewards": [
+        0.7432432432432432
+      ]
+    },
+    "summary": {
+      "max_reward": 0.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 0.7432432432432432,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "medium"
+  },
+  "16": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 16,
+    "query": "Fetch allPosts where the body is 'Lorem ipsum dolor sit amet'. Include the title field",
+    "gold": "{   allPosts(condition : { body: \"Lorem ipsum dolor sit amet\"}) { nodes {  title   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts(condition: {body: \"Lorem ipsum dolor sit amet\"}) {     nodes {       title     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'title': 'First post example'}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "easy"
+  },
+  "17": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 17,
+    "query": "Fetch all posts where the body is Lorem ipsum dolor sit amet and get the title field",
+    "gold": "{   allPosts(condition : { body: \"Lorem ipsum dolor sit amet\"}) { nodes {  title   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts(filter: {body: {equalTo: \"Lorem ipsum dolor sit amet\"}}) {     nodes {       title     }   } }"
+      ],
+      "observations": [
+        "Error executing GraphQL query: Unknown argument 'filter' on field 'Query.allPosts'. Did you mean 'after'?\n\nGraphQL request:1:14\n1 | {   allPosts(filter: {body: {equalTo: \"Lorem ipsum dolor sit amet\"}}) {     nodes {       title     }   } }\n  |              ^"
+      ],
+      "rewards": [
+        0.0
+      ],
+      "valid_action": [
+        false
+      ],
+      "query_rewards": [
+        0.7625
+      ]
+    },
+    "summary": {
+      "max_reward": 0.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 0.7625,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "medium"
+  },
+  "18": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 18,
+    "query": "Fetch the last post with the title and body field",
+    "gold": "{   allPosts(last : 1) { nodes {  title body   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts(last: 1) {     nodes {       title       body     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'title': 'Third post example', 'body': 'Aenean blandit felis sodales'}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "easy"
+  },
+  "19": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 19,
+    "query": "Fetch the first post with the title and body field",
+    "gold": "{   allPosts(first : 1) { nodes {  title body   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts(first: 1) {     nodes {       title       body     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'title': 'First post example', 'body': 'Lorem ipsum dolor sit amet'}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "easy"
+  },
+  "20": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 20,
+    "query": "Fetch the first two post with the title and body field",
+    "gold": "{   allPosts(first : 2) { nodes {  title body   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts(first: 2) {     nodes {       title       body     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'title': 'First post example', 'body': 'Lorem ipsum dolor sit amet'}, {'title': 'Second post example', 'body': 'Consectetur adipiscing elit'}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "medium"
+  },
+  "21": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 21,
+    "query": "Fetch the last three post with the title and body field",
+    "gold": "{   allPosts(last : 3) { nodes {  title body   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts(last: 3, orderBy: ID_DESC) {     nodes {       title       body     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'title': 'Third post example', 'body': 'Aenean blandit felis sodales'}, {'title': 'Second post example', 'body': 'Consectetur adipiscing elit'}, {'title': 'First post example', 'body': 'Lorem ipsum dolor sit amet'}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        0.6923076923076923
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 0.6923076923076923,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "medium"
+  },
+  "22": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 22,
+    "query": "Fetch allPosts and orderBy CREATED_DATE_ASC. Include the title, body and authorId",
+    "gold": "{   allPosts(orderBy: CREATED_DATE_ASC) { nodes {  title body authorId   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts(orderBy: CREATED_DATE_ASC) {     nodes {       title       body       authorId     }   } }"
+      ],
+      "observations": [
+        "{'allPosts': {'nodes': [{'title': 'First post example', 'body': 'Lorem ipsum dolor sit amet', 'authorId': 1}, {'title': 'Second post example', 'body': 'Consectetur adipiscing elit', 'authorId': 2}, {'title': 'Third post example', 'body': 'Aenean blandit felis sodales', 'authorId': 3}]}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "easy"
+  },
+  "23": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 23,
+    "query": "Fetch all posts and order by in ascending on their created date and get their title, body and author id",
+    "gold": "{   allPosts(orderBy: CREATED_DATE_ASC) { nodes {  title body authorId   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts(orderBy: CREATED_AT_ASC) {     nodes {       title       body       authorId     }   } }"
+      ],
+      "observations": [
+        "Error executing GraphQL query: Value 'CREATED_AT_ASC' does not exist in 'PostsOrderBy' enum. Did you mean the enum value 'CREATED_DATE_ASC' or 'CREATED_DATE_DESC'?\n\nGraphQL request:1:23\n1 | {   allPosts(orderBy: CREATED_AT_ASC) {     nodes {       title       body       authorId     }   } }\n  |                       ^"
+      ],
+      "rewards": [
+        0.0
+      ],
+      "valid_action": [
+        false
+      ],
+      "query_rewards": [
+        0.967741935483871
+      ]
+    },
+    "summary": {
+      "max_reward": 0.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 0.967741935483871,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "hard"
+  },
+  "24": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 24,
+    "query": "Fetch the posts where the author id is 1 and get all the fields in the response",
+    "gold": "{   allPosts(condition: {authorId: 2}) { nodes {  id title body authorId createdDate   } }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts(filter: {authorId: {equalTo: 1}}) {     nodes {       id       title       content       authorId     }   } }"
+      ],
+      "observations": [
+        "Error executing GraphQL query: Unknown argument 'filter' on field 'Query.allPosts'. Did you mean 'after'?\n\nGraphQL request:1:14\n1 | {   allPosts(filter: {authorId: {equalTo: 1}}) {     nodes {       id       titl\n  |              ^\n  | e       content       authorId     }   } }"
+      ],
+      "rewards": [
+        0.0
+      ],
+      "valid_action": [
+        false
+      ],
+      "query_rewards": [
+        0.7469879518072289
+      ]
+    },
+    "summary": {
+      "max_reward": 0.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 0.7469879518072289,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "hard"
+  },
+  "25": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 25,
+    "query": "Fetch all posts with the fields of id, title, body and using author id fetch their username",
+    "gold": "query {  allPosts {    nodes {      id      title      body      userByAuthorId {        username      }    }  }}",
+    "turn_history": {
+      "actions": [
+        "{   allPosts {     nodes {       id       title       body       authorByAuthorId {         username       }     }   } }"
+      ],
+      "observations": [
+        "Error executing GraphQL query: Cannot query field 'authorByAuthorId' on type 'Post'. Did you mean 'userByAuthorId'?\n\nGraphQL request:1:66\n1 | {   allPosts {     nodes {       id       title       body       authorByAuthorId {         username       }     }   } }\n  |                                                                  ^"
+      ],
+      "rewards": [
+        0.0
+      ],
+      "valid_action": [
+        false
+      ],
+      "query_rewards": [
+        0.8253968253968254
+      ]
+    },
+    "summary": {
+      "max_reward": 0.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 0.8253968253968254,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "hard"
+  },
+  "26": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 26,
+    "query": "Create a user with the username 'Bob' and also insert the id and created date fields",
+    "gold": "mutation {  createUser(input: {user: {username: \"Bob\"}}) {    user {      id      username      createdDate    }  }}",
+    "turn_history": {
+      "actions": [
+        "mutation {   createUser(input: {user: {username: \"Bob\"}}) {     user {       id       username       createdAt     }   } }"
+      ],
+      "observations": [
+        "Error executing GraphQL query: Cannot query field 'createdAt' on type 'User'. Did you mean 'createdDate'?\n\nGraphQL request:1:102\n1 | mutation {   createUser(input: {user: {username: \"Bob\"}}) {     user {       id \n  |       username       createdAt     }   } }\n  |                      ^"
+      ],
+      "rewards": [
+        0.0
+      ],
+      "valid_action": [
+        false
+      ],
+      "query_rewards": [
+        0.9506172839506173
+      ]
+    },
+    "summary": {
+      "max_reward": 0.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 0.9506172839506173,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "hard"
+  },
+  "27": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 27,
+    "query": "Delete a user by id where the id is 4",
+    "gold": "mutation {  deleteUserById(input : { id: 4}) {    user {      id    }  }}",
+    "turn_history": {
+      "actions": [
+        "mutation {   deleteUserById(input: {id: 4}) {     user {       id     }   } }"
+      ],
+      "observations": [
+        "Error executing GraphQL query: {'message': \"No values were deleted in collection 'users' because no values you can delete were found matching these criteria.\", 'locations': [{'line': 2, 'column': 3}], 'path': ['deleteUserById']}"
+      ],
+      "rewards": [
+        0.0
+      ],
+      "valid_action": [
+        false
+      ],
+      "query_rewards": [
+        1.0
+      ]
+    },
+    "summary": {
+      "max_reward": 0.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 1.0,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "hard"
+  },
+  "28": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 28,
+    "query": "Update the username to Zack for the user with id equal to 3",
+    "gold": "mutation {  updateUserById(input : { id: 3, userPatch: { username: \"Zack\"}}) {    user {      id,      username    }  }}",
+    "turn_history": {
+      "actions": [
+        "mutation {   updateUserById(input: {id: 3, userPatch: {username: \"Zack\"}}) {     user {       id       username     }   } }"
+      ],
+      "observations": [
+        "{'updateUserById': {'user': {'id': 3, 'username': 'Zack'}}}"
+      ],
+      "rewards": [
+        1.0
+      ],
+      "valid_action": [
+        true
+      ],
+      "query_rewards": [
+        0.9882352941176471
+      ]
+    },
+    "summary": {
+      "max_reward": 1.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 0.9882352941176471,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "hard"
+  },
+  "29": {
+    "environment": "ic_graphql",
+    "dataset": "./data/graphql/nl2graphql_fs_1.json",
+    "task_id": 29,
+    "query": "Get the user with the fields id, username and created date where the username is Benjie",
+    "gold": "{   allUsers(condition : { username: \"Benjie\"}) { nodes {  id username createdDate   } }}",
+    "turn_history": {
+      "actions": [
+        "{   userByUsername(username: \"Benjie\") {     id     username     createdDate   } }"
+      ],
+      "observations": [
+        "Error executing GraphQL query: Cannot query field 'userByUsername' on type 'Query'.\n\nGraphQL request:1:5\n1 | {   userByUsername(username: \"Benjie\") {     id     username     createdDate   } }\n  |     ^"
+      ],
+      "rewards": [
+        0.0
+      ],
+      "valid_action": [
+        false
+      ],
+      "query_rewards": [
+        0.6753246753246753
+      ]
+    },
+    "summary": {
+      "max_reward": 0.0,
+      "max_reward_idx": 0,
+      "max_query_reward": 0.6753246753246753,
+      "turns_taken": 1,
+      "turns_max": 1
+    },
+    "hardness": "hard"
+  }
+}
